@@ -33,11 +33,15 @@ jobs:
         id: calchecker-run
         run: |
           output=$(pants run calchecker:main)
-          echo "::add-mask::$output"
+          while read -r line;
+          do
+            echo "::add-mask::${line}"
+          done <<< "$output"
+
           echo "LOGS<<EOF" >> "$GITHUB_OUTPUT"
           echo "$output" >> "$GITHUB_OUTPUT"
           echo "EOF" >> "$GITHUB_OUTPUT"
-          echo "::add-mask::$GITHUB_OUTPUT"
+
         env:
           ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
           CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
