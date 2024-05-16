@@ -32,7 +32,11 @@ jobs:
       - name: CalChecker run
         id: calchecker-run
         run: |
-          LOGS=$(pants run calchecker:main)
+          {
+            echo 'LOGS<<EOF'
+            pants run calchecker:main
+            echo EOF
+          } >> "$GITHUB_ENV"
           echo "::add-mask::$LOGS"
           echo "LOGS=$LOGS" >> "$GITHUB_OUTPUT"
         env:
