@@ -7,7 +7,7 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   build:
-    name: Trigger Regybox run
+    name: Trigger CalChecker run
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -32,13 +32,13 @@ jobs:
       - name: CalChecker run
         id: calchecker-run
         run: |
+          output=$(pants run calchecker:main)
+          echo "::add-mask::$output"
           {
             echo 'LOGS<<EOF'
-            pants run calchecker:main
+            echo "$output"
             echo EOF
-          } >> "$GITHUB_ENV"
-          echo "::add-mask::$LOGS"
-          echo "LOGS=$LOGS" >> "$GITHUB_OUTPUT"
+          } >> "$GITHUB_OUTPUT"
         env:
           ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
           CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
