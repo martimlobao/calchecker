@@ -50,7 +50,7 @@ jobs:
         with:
           name: calendar_state
           path: state.bin
-          # if-no-files-found: error
+          if-no-files-found: error
           overwrite: true
       - name: Send mail
         if: steps.calchecker-run.outputs.LOGS != ''
