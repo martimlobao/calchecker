@@ -42,7 +42,7 @@ use_coverage = true
 
 [coverage-py]
 install_from_resolve = "python-default"
-filter = ["pdlpeople"]
+filter = ["calchecker"]
 
 [black]
 install_from_resolve = "python-default"

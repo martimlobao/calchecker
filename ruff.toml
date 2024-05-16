@@ -45,6 +45,7 @@ known-first-party = ["calchecker"]
     "D104",  # undocumented-public-package
     "D107",  # undocumented-public-init
     "INP001",  # implicit-namespace-package
+    "PLC2701",  # import-private-name
     "S101",  # assert
 ]
 
