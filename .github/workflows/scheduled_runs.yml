@@ -1,0 +1,59 @@
+---
+name: Trigger CalChecker
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  schedule:
+    - cron: 0 9 * * 1  # 09:00 every Monday
+
+jobs:
+  build:
+    name: Trigger Regybox run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Set up pants
+        uses: pantsbuild/actions/init-pants@v8
+        with:
+          gha-cache-key: ${{ runner.os }}-pants-init-${{ hashFiles('pants.toml') }}
+          named-caches-hash: ${{ hashFiles('3rdparty/python/default.lock') }}
+      - name: Download state artifact
+        id: download-state
+        uses: actions/download-artifact@v4
+        with:
+          name: calendar_state
+          path: .
+      - name: CalChecker run
+        id: calchecker-run
+        run: |
+          LOGS=$(pants run calchecker:main)
+          echo "::add-mask::$LOGS"
+          echo "LOGS=$LOGS" >> "$GITHUB_OUTPUT"
+        env:
+          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+          CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
+      - name: Upload state artifact
+        if: steps.calchecker-run.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: calendar_state
+          path: state.bin
+      - name: Send mail
+        if: steps.calchecker-run.outputs.LOGS != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: >
+            New changes from CalChecker
+          body: >
+            ${{ steps.calchecker-run.outputs.LOGS }}"
+          to: m@rtimlobao.com
+          from: CalChecker
