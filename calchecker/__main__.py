@@ -2,7 +2,6 @@
 
 import json
 import os
-import sys
 from pathlib import Path
 
 import icalendar
@@ -73,9 +72,11 @@ def main(url: str, state_file: str, key: str) -> str:
             logs.append("")
         logs.append("Events deleted")
         logs.extend(format_event(previous_events[uid]) for uid in deleted_events)
+
+    # save_state(state_file, current_events, key)
     return "\n".join(logs)
 
 
 if __name__ == "__main__":
     LOGS = main(CALENDAR_URL, STATE_FILE, ENCRYPTION_KEY)
-    sys.stdout.write(LOGS)
+    print(LOGS)
