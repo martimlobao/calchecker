@@ -51,10 +51,10 @@ jobs:
         with:
           name: calendar_state
           path: state.bin
-          if-no-files-found: error
+          # if-no-files-found: error
           overwrite: true
       - name: Send mail
-        if: steps.calchecker-run.outputs.LOGS != ''
+        if: steps.calchecker-run.outputs.output != ''
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
