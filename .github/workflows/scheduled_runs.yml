@@ -32,16 +32,15 @@ jobs:
       - name: CalChecker run
         id: calchecker-run
         run: |
-          output=$(pants run calchecker:main)
+          LOGS=$(pants run calchecker:main)
           while read -r line;
           do
             echo "::add-mask::${line}"
-          done <<< "$output"
+          done <<< "$LOGS"
 
           echo "LOGS<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$output" >> "$GITHUB_OUTPUT"
+          echo "$LOGS" >> "$GITHUB_OUTPUT"
           echo "EOF" >> "$GITHUB_OUTPUT"
-
         env:
           ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
           CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
@@ -54,7 +53,7 @@ jobs:
           # if-no-files-found: error
           overwrite: true
       - name: Send mail
-        if: steps.calchecker-run.outputs.output != ''
+        if: steps.calchecker-run.outputs.LOGS != ''
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
