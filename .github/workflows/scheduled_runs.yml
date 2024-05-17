@@ -70,7 +70,7 @@ jobs:
             ${{ job.status }} state.
 
             See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
-          to: n@rtimlobao.com
+          to: ${{ secrets.EMAIL_ADDRESS }}
           from: CalChecker
       - name: Send mail
         if: steps.calchecker-run.outputs.LOGS != ''
@@ -84,5 +84,5 @@ jobs:
             New changes from CalChecker
           body: >
             ${{ steps.calchecker-run.outputs.LOGS }}
-          to: n@rtimlobao.com
+          to: ${{ secrets.EMAIL_ADDRESS }}
           from: CalChecker
