@@ -60,10 +60,13 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: >
-            New changes from CalChecker
+            CalChecker failed
           body: >
-            ${{ steps.calchecker-run.outputs.LOGS }}"
-          to: m@rtimlobao.com
+            Job '${{ github.job }}' in worflow ${{ github.workflow }} of ${{ github.repository }} finished in a
+            ${{ job.status }} state.
+
+            See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+          to: ${{ secrets.EMAIL_ADDRESS }}
           from: CalChecker
       - name: Send mail
         if: steps.calchecker-run.outputs.LOGS != ''
@@ -76,6 +79,6 @@ jobs:
           subject: >
             New changes from CalChecker
           body: >
-            ${{ steps.calchecker-run.outputs.LOGS }}"
-          to: m@rtimlobao.com
+            ${{ steps.calchecker-run.outputs.LOGS }}
+          to: ${{ secrets.EMAIL_ADDRESS }}
           from: CalChecker
