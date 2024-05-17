@@ -28,6 +28,7 @@ jobs:
         with:
           name: calendar-state
           path: .
+        continue-on-error: true
       - name: CalChecker run
         id: calchecker-run
         run: |
