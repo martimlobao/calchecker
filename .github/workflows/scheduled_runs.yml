@@ -34,9 +34,11 @@ jobs:
         id: calchecker-run
         run: |
           LOGS=$(pants run calchecker:main)
-          while read -r line;
-          do
-            echo "::add-mask::${line}"
+          # Mask each line of the output to hide it in logs
+          while read -r line; do
+            if [ -n "$line" ]; then
+              echo "::add-mask::${line}"
+            fi
           done <<< "$LOGS"
 
           echo "LOGS<<EOF" >> "$GITHUB_OUTPUT"

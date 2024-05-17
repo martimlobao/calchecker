@@ -1,5 +1,5 @@
-from calchecker.__main__ import STATE_FILE
+from calchecker.__main__ import CALENDAR_STATE
 
 
 def test_filename() -> None:
-    assert STATE_FILE == "state.bin"
+    assert CALENDAR_STATE == "calendar.bin"
