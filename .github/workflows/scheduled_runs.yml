@@ -7,7 +7,7 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   build:
-    name: Trigger Regybox run
+    name: Trigger CalChecker run
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -24,16 +24,26 @@ jobs:
           named-caches-hash: ${{ hashFiles('3rdparty/python/default.lock') }}
       - name: Download state artifact
         id: download-state
-        uses: actions/download-artifact@v4
+        uses: dawidd6/action-download-artifact@v3
         with:
-          name: calendar_state
-          path: .
+          name: calendar-state
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+        continue-on-error: true
       - name: CalChecker run
         id: calchecker-run
         run: |
           LOGS=$(pants run calchecker:main)
-          echo "::add-mask::$LOGS"
-          echo "LOGS=$LOGS" >> "$GITHUB_OUTPUT"
+          # Mask each line of the output to hide it in logs
+          while read -r line; do
+            if [ -n "$line" ]; then
+              echo "::add-mask::${line}"
+            fi
+          done <<< "$LOGS"
+
+          echo "LOGS<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$LOGS" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
         env:
           ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
           CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
@@ -41,8 +51,27 @@ jobs:
         if: steps.calchecker-run.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: calendar_state
-          path: state.bin
+          name: calendar-state
+          path: calendar.bin
+          if-no-files-found: error
+          overwrite: true
+      - name: Send mail on failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: >
+            CalChecker failed
+          body: >
+            Job '${{ github.job }}' in worflow ${{ github.workflow }} of ${{ github.repository }} finished in a
+            ${{ job.status }} state.
+
+            See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+          to: ${{ secrets.EMAIL_ADDRESS }}
+          from: CalChecker
       - name: Send mail
         if: steps.calchecker-run.outputs.LOGS != ''
         uses: dawidd6/action-send-mail@v3
@@ -54,6 +83,6 @@ jobs:
           subject: >
             New changes from CalChecker
           body: >
-            ${{ steps.calchecker-run.outputs.LOGS }}"
-          to: m@rtimlobao.com
+            ${{ steps.calchecker-run.outputs.LOGS }}
+          to: ${{ secrets.EMAIL_ADDRESS }}
           from: CalChecker
