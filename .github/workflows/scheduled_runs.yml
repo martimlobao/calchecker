@@ -28,7 +28,7 @@ jobs:
         with:
           name: calendar-state
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: bugfix/fix-gh-action
+          branch: main
         continue-on-error: true
       - name: CalChecker run
         id: calchecker-run
