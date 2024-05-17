@@ -24,11 +24,11 @@ jobs:
           named-caches-hash: ${{ hashFiles('3rdparty/python/default.lock') }}
       - name: Download state artifact
         id: download-state
-        uses: actions/download-artifact@v4
+        uses: dawidd6/action-download-artifact@v3
         with:
           name: calendar-state
-      - name: List Artifact Contents
-        run: ls -R
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: bugfix/fix-gh-action
         continue-on-error: true
       - name: CalChecker run
         id: calchecker-run
@@ -68,7 +68,7 @@ jobs:
             ${{ job.status }} state.
 
             See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
-          to: ${{ secrets.EMAIL_ADDRESS }}
+          to: n@rtimlobao.com
           from: CalChecker
       - name: Send mail
         if: steps.calchecker-run.outputs.LOGS != ''
@@ -82,5 +82,5 @@ jobs:
             New changes from CalChecker
           body: >
             ${{ steps.calchecker-run.outputs.LOGS }}
-          to: ${{ secrets.EMAIL_ADDRESS }}
+          to: n@rtimlobao.com
           from: CalChecker
