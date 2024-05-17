@@ -27,7 +27,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: calendar-state
-          path: .
+      - name: List Artifact Contents
+        run: ls -R
         continue-on-error: true
       - name: CalChecker run
         id: calchecker-run
