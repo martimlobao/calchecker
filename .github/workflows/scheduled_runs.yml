@@ -26,9 +26,8 @@ jobs:
         id: download-state
         uses: actions/download-artifact@v4
         with:
-          name: calendar_state
+          name: calendar-state
           path: .
-        continue-on-error: true
       - name: CalChecker run
         id: calchecker-run
         run: |
@@ -48,10 +47,24 @@ jobs:
         if: steps.calchecker-run.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: calendar_state
-          path: state.bin
+          name: calendar-state
+          path: calendar.bin
           if-no-files-found: error
           overwrite: true
+      - name: Send mail on failure
+        if: steps.calchecker-run.outcome == 'failure'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: >
+            New changes from CalChecker
+          body: >
+            ${{ steps.calchecker-run.outputs.LOGS }}"
+          to: m@rtimlobao.com
+          from: CalChecker
       - name: Send mail
         if: steps.calchecker-run.outputs.LOGS != ''
         uses: dawidd6/action-send-mail@v3

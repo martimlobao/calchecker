@@ -13,7 +13,7 @@ load_dotenv(dotenv_path=find_dotenv(usecwd=True))
 
 CALENDAR_URL: str = os.environ["CALENDAR_URL"]
 ENCRYPTION_KEY: str = os.environ["ENCRYPTION_KEY"]
-STATE_FILE: str = "state.bin"
+CALENDAR_STATE: str = "calendar.bin"
 
 
 def fetch_calendar(url: str) -> icalendar.Calendar:
@@ -56,11 +56,11 @@ def format_event(event: icalendar.cal.Event) -> str:
     return f"{event.decoded('summary').decode()} @ {event.decoded('dtstart').isoformat()}"
 
 
-def main(url: str, state_file: str, key: str) -> str:
+def main(url: str, calendar_state: str, key: str) -> str:
     """Monitor the calendar and return the changes."""
     calendar_data = fetch_calendar(url)
 
-    previous_events = load_state(state_file, key)
+    previous_events = load_state(calendar_state, key)
     current_events = parse_calendar(calendar_data)
     logs = []
 
@@ -73,10 +73,10 @@ def main(url: str, state_file: str, key: str) -> str:
         logs.append("Events deleted")
         logs.extend(format_event(previous_events[uid]) for uid in deleted_events)
 
-    save_state(state_file, current_events, key)
+    save_state(calendar_state, current_events, key)
     return "\n".join(logs)
 
 
 if __name__ == "__main__":
-    LOGS = main(CALENDAR_URL, STATE_FILE, ENCRYPTION_KEY)
+    LOGS = main(CALENDAR_URL, CALENDAR_STATE, ENCRYPTION_KEY)
     print(LOGS)  # noqa: T201
