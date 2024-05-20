@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Set up pants
-        uses: pantsbuild/actions/init-pants@v8
+        uses: pantsbuild/actions/init-pants@v9
         with:
           gha-cache-key: ${{ runner.os }}-pants-init-${{ hashFiles('pants.toml') }}
           named-caches-hash: ${{ hashFiles('3rdparty/python/default.lock') }}
@@ -27,7 +27,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v3
         with:
           name: calendar-state
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
           branch: main
         continue-on-error: true
       - name: CalChecker run
