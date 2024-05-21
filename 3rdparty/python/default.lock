@@ -21,7 +21,7 @@
 //     "pytest-cov>=4.1.0",
 //     "pytest>=8.0.0",
 //     "python-dotenv<2.0.0,>=1.0.1",
-//     "requests<3.0.0,>=2.31.0",
+//     "requests<3.0.0,>=2.32.0",
 //     "ruff>=0",
 //     "types-beautifulsoup4>=4.12.0.5",
 //     "types-pytz>=2023.4.0.0",
@@ -48,13 +48,13 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "b452064132234819f023b94f4bd045b250ea0009f372b4377cfcd87f10806ca5",
-              "url": "https://files.pythonhosted.org/packages/c4/d1/d5c88f84d62d0995dab4220a87049ff7f5d13472f54687a4e64538f15180/astroid-3.2.1-py3-none-any.whl"
+              "hash": "e8a0083b4bb28fcffb6207a3bfc9e5d0a68be951dd7e336d5dcf639c682388c0",
+              "url": "https://files.pythonhosted.org/packages/c7/81/f49fae71340af02a6014278517c36449bdd8e8b792f4ef7397f3b054f460/astroid-3.2.2-py3-none-any.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "902564b36796ba1eab3ad2c7a694861fbd926f574d5dbb5fa1d86778a2ba2d91",
-              "url": "https://files.pythonhosted.org/packages/c0/8c/3bdbdc8f0c37cf105d6758574f4650c960f57e40d08c5c0ac78a06e515d5/astroid-3.2.1.tar.gz"
+              "hash": "8ead48e31b92b2e217b6c9733a21afafe479d52d6e164dd25fb1a770c7c3cf94",
+              "url": "https://files.pythonhosted.org/packages/27/8f/79adb88627d194824decf7b9f4dde9e059b251a7b76809c99f4803be258e/astroid-3.2.2.tar.gz"
             }
           ],
           "project_name": "astroid",
@@ -62,7 +62,7 @@
             "typing-extensions>=4.0.0; python_version < \"3.11\""
           ],
           "requires_python": ">=3.8.0",
-          "version": "3.2.1"
+          "version": "3.2.2"
         },
         {
           "artifacts": [
@@ -1216,18 +1216,18 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "9f20c05398520474dac03d7abb21ab93181f91d4c110e1e0b32bc0d016c34fa4",
-              "url": "https://files.pythonhosted.org/packages/c9/8c/e7becbaea2390631de85019b4f1cf216dc747d2e5400d2859d01f4c42941/pylint-3.2.0-py3-none-any.whl"
+              "hash": "3f8788ab20bb8383e06dd2233e50f8e08949cfd9574804564803441a4946eab4",
+              "url": "https://files.pythonhosted.org/packages/bd/23/7a546224d2931cda031ee3cddc9e723650ad8e491d7c64efbab97e43e16d/pylint-3.2.2-py3-none-any.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "ad8baf17c8ea5502f23ae38d7c1b7ec78bd865ce34af9a0b986282e2611a8ff2",
-              "url": "https://files.pythonhosted.org/packages/62/75/e48496ea7fc2de24b361dd8084300a2f7e51c47e82363c736026d41cdf2f/pylint-3.2.0.tar.gz"
+              "hash": "d068ca1dfd735fb92a07d33cb8f288adc0f6bc1287a139ca2425366f7cbe38f8",
+              "url": "https://files.pythonhosted.org/packages/0c/4c/b561478a1ccb91e9b02965cb999d2281894d43e68c0bf3777d023af15f11/pylint-3.2.2.tar.gz"
             }
           ],
           "project_name": "pylint",
           "requires_dists": [
-            "astroid<=3.3.0-dev0,>=3.2.0",
+            "astroid<=3.3.0-dev0,>=3.2.2",
             "colorama>=0.4.5; sys_platform == \"win32\"",
             "dill>=0.2; python_version < \"3.11\"",
             "dill>=0.3.6; python_version >= \"3.11\"",
@@ -1242,19 +1242,19 @@
             "typing-extensions>=3.10.0; python_version < \"3.10\""
           ],
           "requires_python": ">=3.8.0",
-          "version": "3.2.0"
+          "version": "3.2.2"
         },
         {
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "1733f0620f6cda4095bbf0d9ff8022486e91892245bb9e7d5542c018f612f233",
-              "url": "https://files.pythonhosted.org/packages/c4/43/6b1debd95ecdf001bc46789a933f658da3f9738c65f32db3f4e8f2a4ca97/pytest-8.2.0-py3-none-any.whl"
+              "hash": "faccc5d332b8c3719f40283d0d44aa5cf101cec36f88cde9ed8f2bc0538612b1",
+              "url": "https://files.pythonhosted.org/packages/b4/c1/27a1274b73712232328cb5115030057b7dec377f36a518c83f2e01d4f305/pytest-8.2.1-py3-none-any.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "d507d4482197eac0ba2bae2e9babf0672eb333017bcedaa5fb1a3d42c1174b3f",
-              "url": "https://files.pythonhosted.org/packages/09/9d/78b3785134306efe9329f40815af45b9215068d6ae4747ec0bc91ff1f4aa/pytest-8.2.0.tar.gz"
+              "hash": "5046e5b46d8e4cac199c373041f26be56fdb81eb4e67dc11d4e10811fc3408fd",
+              "url": "https://files.pythonhosted.org/packages/cf/4e/0ceea141f0e5d09de4053c5338c62615ae2bd9bd3f013813f5ec62e3cf97/pytest-8.2.1.tar.gz"
             }
           ],
           "project_name": "pytest",
@@ -1275,7 +1275,7 @@
             "xmlschema; extra == \"dev\""
           ],
           "requires_python": ">=3.8",
-          "version": "8.2.0"
+          "version": "8.2.1"
         },
         {
           "artifacts": [
@@ -1403,13 +1403,13 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f",
-              "url": "https://files.pythonhosted.org/packages/70/8e/0e2d847013cb52cd35b38c009bb167a1a26b2ce6cd6965bf26b47bc0bf44/requests-2.31.0-py3-none-any.whl"
+              "hash": "21ac9465cdf8c1650fe1ecde8a71669a93d4e6f147550483a2967d08396a56a5",
+              "url": "https://files.pythonhosted.org/packages/9c/a6/b9bf71eeb6dc835311b5c47a7c90df57b08061091161639611252257768d/requests-2.32.1-py3-none-any.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1",
-              "url": "https://files.pythonhosted.org/packages/9d/be/10918a2eac4ae9f02f6cfe6414b7a155ccd8f7f9d4380d62fd5b955065c3/requests-2.31.0.tar.gz"
+              "hash": "eb97e87e64c79e64e5b8ac75cee9dd1f97f49e289b083ee6be96268930725685",
+              "url": "https://files.pythonhosted.org/packages/d8/c1/f32fb7c02e7620928ef14756ff4840cae3b8ef1d62f7e596bc5413300a16/requests-2.32.1.tar.gz"
             }
           ],
           "project_name": "requests",
@@ -1421,8 +1421,8 @@
             "idna<4,>=2.5",
             "urllib3<3,>=1.21.1"
           ],
-          "requires_python": ">=3.7",
-          "version": "2.31.0"
+          "requires_python": ">=3.8",
+          "version": "2.32.1"
         },
         {
           "artifacts": [
@@ -1671,13 +1671,13 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "6216cdac377c6b9a040ac1c0404f7284bd13199c0e1bb235f4324627e8898cf5",
-              "url": "https://files.pythonhosted.org/packages/8b/ea/91b718b8c0b88e4f61cdd61357cc4a1f8767b32be691fb388299003a3ae3/types_requests-2.31.0.20240406-py3-none-any.whl"
+              "hash": "ab728ba43ffb073db31f21202ecb97db8753ded4a9dc49cb480d8a5350c5c421",
+              "url": "https://files.pythonhosted.org/packages/ff/03/2baab14e06460495b7549188ff27051f9514551485349ea2aa9ca3ac6030/types_requests-2.32.0.20240521-py3-none-any.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "4428df33c5503945c74b3f42e82b181e86ec7b724620419a2966e2de604ce1a1",
-              "url": "https://files.pythonhosted.org/packages/b4/40/66afbb030f4a800c08a9312a0653a7aec06ce0bd633d83215eb0f83c0f46/types-requests-2.31.0.20240406.tar.gz"
+              "hash": "c5c4a0ae95aad51f1bf6dae9eed04a78f7f2575d4b171da37b622e08b93eb5d3",
+              "url": "https://files.pythonhosted.org/packages/3e/f0/9c132f1d6ef5bcb1b4a5d0ac746a161d251df84a9808e6abfc4164a04d41/types-requests-2.32.0.20240521.tar.gz"
             }
           ],
           "project_name": "types-requests",
@@ -1685,7 +1685,7 @@
             "urllib3>=2"
           ],
           "requires_python": ">=3.8",
-          "version": "2.31.0.20240406"
+          "version": "2.32.0.20240521"
         },
         {
           "artifacts": [
@@ -1811,7 +1811,7 @@
     "pytest-cov>=4.1.0",
     "pytest>=8.0.0",
     "python-dotenv<2.0.0,>=1.0.1",
-    "requests<3.0.0,>=2.31.0",
+    "requests<3.0.0,>=2.32.0",
     "ruff>=0",
     "types-beautifulsoup4>=4.12.0.5",
     "types-pytz>=2023.4.0.0",
