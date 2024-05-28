@@ -3,7 +3,7 @@ name: Trigger CalChecker
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   schedule:
-    - cron: 0 22 * * 1-5  # Every weekday at 22:00 UTC
+    - cron: 0 22 * * *  # Every day at 22:00 UTC
 
 jobs:
   build:
