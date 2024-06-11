@@ -24,7 +24,7 @@ jobs:
           named-caches-hash: ${{ hashFiles('3rdparty/python/default.lock') }}
       - name: Download state artifact
         id: download-state
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v5
         with:
           name: calendar-state
           github_token: ${{ secrets.GH_TOKEN }}
