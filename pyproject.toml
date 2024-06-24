@@ -9,7 +9,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.12"
 cryptography = "^42.0.8"
-icalendar = "^5.0.12"
+icalendar = "^5.0.13"
 python-dotenv = "^1.0.1"
 requests = "^2.32.3"
 
