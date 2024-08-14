@@ -17,19 +17,31 @@ CALENDAR_STATE: str = "calendar.bin"
 
 
 def fetch_calendar(url: str) -> icalendar.Calendar:
-    """Fetch the calendar data from the given URL."""
+    """Fetch the calendar data from the given URL.
+
+    Returns:
+        icalendar.Calendar: The calendar data.
+    """
     res: requests.models.Response = requests.get(url, timeout=10)
     res.raise_for_status()
     return icalendar.Calendar.from_ical(res.content)
 
 
 def parse_calendar(calendar: icalendar.Calendar) -> dict[str, icalendar.cal.Event]:
-    """Parse the calendar data and return a dictionary of events."""
+    """Parse the calendar data and return a dictionary of events.
+
+    Returns:
+        dict[str, icalendar.cal.Event]: An event dictionary by UUID.
+    """
     return {str(event["UID"]): event for event in calendar.walk("VEVENT")}
 
 
 def load_state(filename: str, key: str) -> dict[str, icalendar.cal.Event]:
-    """Load the state from the given file and return a dictionary of events."""
+    """Load the state from the given file and return a dictionary of events.
+
+    Returns:
+        dict[str, icalendar.cal.Event]: An event dictionary by UUID.
+    """
     if Path(filename).exists():
         encrypted_data = Path(filename).read_bytes()
         fernet = Fernet(key)
@@ -52,12 +64,20 @@ def save_state(filename: str, state: dict[str, icalendar.cal.Event], key: str) -
 
 
 def format_event(event: icalendar.cal.Event) -> str:
-    """Format the event data for logging."""
+    """Format the event data for logging.
+
+    Returns:
+        str: The formatted event data.
+    """
     return f"{event.decoded('summary').decode()} @ {event.decoded('dtstart').isoformat()}"
 
 
 def main(url: str, calendar_state: str, key: str) -> str:
-    """Monitor the calendar and return the changes."""
+    """Monitor the calendar and return the changes.
+
+    Returns:
+        str: The logs of the changes.
+    """
     calendar_data = fetch_calendar(url)
 
     previous_events = load_state(calendar_state, key)
