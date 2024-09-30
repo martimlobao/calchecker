@@ -14,7 +14,7 @@
 //     "cryptography<44.0.0,>=43.0.1",
 //     "docformatter>=1.7.5",
 //     "hypothesis>=6.97.3",
-//     "icalendar<6.0.0,>=5.0.13",
+//     "icalendar<7.0.0,>=6.0.0",
 //     "ipython>=8.20.0",
 //     "mypy>=1.8.0",
 //     "pylint>=3.0.3",
@@ -692,23 +692,27 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "5ded5415e2e1edef5ab230024a75878a7a81d518a3b1ae4f34bf20b173c84dc2",
-              "url": "https://files.pythonhosted.org/packages/a4/e1/371d172fa02319d5998b22bb61b524eb1be6216a549edd997fd7d00007d0/icalendar-5.0.13-py3-none-any.whl"
+              "hash": "567e718551d800362db04ca09777295336e1803f6fc6bc0a7a5e258917fa8ed0",
+              "url": "https://files.pythonhosted.org/packages/ee/29/13a5fe91bc60eb9e346e82d3ae58959e756b855c1ad5384343ed5d36828a/icalendar-6.0.0-py3-none-any.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "92799fde8cce0b61daa8383593836d1e19136e504fa1671f471f98be9b029706",
-              "url": "https://files.pythonhosted.org/packages/3c/d8/ada43e4872aab3bfaf2cc2e09b2d2a5d83f771bfc58ba6a63904a5067db8/icalendar-5.0.13.tar.gz"
+              "hash": "7ddf60d343f3c1f716de9b62f6e80ffd95d03cab62464894a0539feab7b5c76e",
+              "url": "https://files.pythonhosted.org/packages/af/ce/127d44302810184b1680ba5e0ab588325cf427d1a5e8c8479dd2cec80e97/icalendar-6.0.0.tar.gz"
             }
           ],
           "project_name": "icalendar",
           "requires_dists": [
-            "backports.zoneinfo; python_version == \"3.7\" or python_version == \"3.8\"",
+            "backports-zoneinfo; python_version < \"3.9\"",
+            "coverage; extra == \"test\"",
+            "hypothesis; extra == \"test\"",
+            "pytest; extra == \"test\"",
             "python-dateutil",
-            "pytz"
+            "pytz; extra == \"test\"",
+            "tzdata"
           ],
-          "requires_python": ">=3.7",
-          "version": "5.0.13"
+          "requires_python": ">=3.8",
+          "version": "6.0.0"
         },
         {
           "artifacts": [
@@ -1354,24 +1358,6 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "31c7c1817eb7fae7ca4b8c7ee50c72f93aa2dd863de768e1ef4245d426aa0725",
-              "url": "https://files.pythonhosted.org/packages/11/c3/005fcca25ce078d2cc29fd559379817424e94885510568bc1bc53d7d5846/pytz-2024.2-py2.py3-none-any.whl"
-            },
-            {
-              "algorithm": "sha256",
-              "hash": "2aa355083c50a0f93fa581709deac0c9ad65cca8a9e9beac660adcbd493c798a",
-              "url": "https://files.pythonhosted.org/packages/3a/31/3c70bf7603cc2dca0f19bdc53b4537a797747a58875b552c8c413d963a3f/pytz-2024.2.tar.gz"
-            }
-          ],
-          "project_name": "pytz",
-          "requires_dists": [],
-          "requires_python": null,
-          "version": "2024.2"
-        },
-        {
-          "artifacts": [
-            {
-              "algorithm": "sha256",
               "hash": "8b9c7197f7cb2738065c481a0461e50ad02f18c78cd75775628afb4d7137fb3b",
               "url": "https://files.pythonhosted.org/packages/c9/1f/4f998c900485e5c0ef43838363ba4a9723ac0ad73a9dc42068b12aaba4e4/PyYAML-6.0.2-cp312-cp312-musllinux_1_1_x86_64.whl"
             },
@@ -1731,6 +1717,24 @@
           "artifacts": [
             {
               "algorithm": "sha256",
+              "hash": "a48093786cdcde33cad18c2555e8532f34422074448fbc874186f0abd79565cd",
+              "url": "https://files.pythonhosted.org/packages/a6/ab/7e5f53c3b9d14972843a647d8d7a853969a58aecc7559cb3267302c94774/tzdata-2024.2-py2.py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "7d85cc416e9382e69095b7bdf4afd9e3880418a2413feec7069d533d6b4e31cc",
+              "url": "https://files.pythonhosted.org/packages/e1/34/943888654477a574a86a98e9896bae89c7aa15078ec29f490fef2f1e5384/tzdata-2024.2.tar.gz"
+            }
+          ],
+          "project_name": "tzdata",
+          "requires_dists": [],
+          "requires_python": ">=2",
+          "version": "2024.2"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
               "hash": "3865dbbbb8efb4bb5eaa72f1be7f3e0be00ea8b7f125c69cbd1f5fda926f37a2",
               "url": "https://files.pythonhosted.org/packages/f7/46/e7cea8159199096e1df52da20a57a6665da80c37fb8aeb848a3e47442c32/untokenize-0.1.1.tar.gz"
             }
@@ -1826,7 +1830,7 @@
     "cryptography<44.0.0,>=43.0.1",
     "docformatter>=1.7.5",
     "hypothesis>=6.97.3",
-    "icalendar<6.0.0,>=5.0.13",
+    "icalendar<7.0.0,>=6.0.0",
     "ipython>=8.20.0",
     "mypy>=1.8.0",
     "pylint>=3.0.3",
