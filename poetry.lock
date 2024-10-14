@@ -531,13 +531,13 @@ zoneinfo = ["backports.zoneinfo (>=0.2.1)", "tzdata (>=2024.2)"]
 
 [[package]]
 name = "icalendar"
-version = "6.0.0"
+version = "6.0.1"
 description = "iCalendar parser/generator"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "icalendar-6.0.0-py3-none-any.whl", hash = "sha256:567e718551d800362db04ca09777295336e1803f6fc6bc0a7a5e258917fa8ed0"},
-    {file = "icalendar-6.0.0.tar.gz", hash = "sha256:7ddf60d343f3c1f716de9b62f6e80ffd95d03cab62464894a0539feab7b5c76e"},
+    {file = "icalendar-6.0.1-py3-none-any.whl", hash = "sha256:9bf3d69203bd0366a9a29a8b0e220574580b86d7918afcb628fc6920287922f3"},
+    {file = "icalendar-6.0.1.tar.gz", hash = "sha256:1ff44825d7b41c3f77eac9e09cc67a770dd3c2377430c23b0eb7d91603088892"},
 ]
 
 [package.dependencies]
@@ -1267,4 +1267,4 @@ dev = ["doc8", "flake8", "flake8-import-order", "rstcheck[sphinx]", "sphinx"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "ad5f78019e18d8db0eba3202d753c5f21f0e849875bbc5f5dc83f524ad8533d9"
+content-hash = "6061be44a3e752581ac6559746fc263a1675944578c6f256f9417d78ed108be6"
