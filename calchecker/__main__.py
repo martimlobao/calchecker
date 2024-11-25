@@ -79,19 +79,33 @@ def main(url: str, calendar_state: str, key: str) -> str:
         str: The logs of the changes.
     """
     calendar_data = fetch_calendar(url)
-
     previous_events = load_state(calendar_state, key)
     current_events = parse_calendar(calendar_data)
+
     logs = []
 
-    if new_events := [event for event in current_events if event not in previous_events]:
+    if new := [event for event in current_events if event not in previous_events]:
         logs.append("New events added")
-        logs.extend(format_event(current_events[uid]) for uid in new_events)
-    if deleted_events := [event for event in previous_events if event not in current_events]:
+        logs.extend(format_event(current_events[uid]) for uid in new)
+
+    if deleted := [event for event in previous_events if event not in current_events]:
         if logs:
             logs.append("")
         logs.append("Events deleted")
-        logs.extend(format_event(previous_events[uid]) for uid in deleted_events)
+        logs.extend(format_event(previous_events[uid]) for uid in deleted)
+
+    updated = []
+    for uid in previous_events.keys() & current_events.keys():
+        old_summary = str(previous_events[uid]["SUMMARY"])
+        new_summary = str(current_events[uid]["SUMMARY"])
+        if old_summary != new_summary:
+            updated.append(f"{uid}: {old_summary} -> {new_summary}")
+
+    if updated:
+        if logs:
+            logs.append("")
+        logs.append("Events updated")
+        logs.extend(updated)
 
     save_state(calendar_state, current_events, key)
     return "\n".join(logs)
