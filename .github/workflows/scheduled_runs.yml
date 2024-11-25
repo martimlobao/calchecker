@@ -1,9 +1,9 @@
 ---
 name: Trigger CalChecker
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   workflow_dispatch:
   schedule:
-    - cron: 0 0/6 * * *  # Every six hours, every day
+    - cron: 0 0/6 * * * # Every six hours, every day
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
       - name: Set up pants
         uses: pantsbuild/actions/init-pants@v9
         with:
