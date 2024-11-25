@@ -1,4 +1,4 @@
-from calchecker.__main__ import CALENDAR_STATE
+from calchecker.__main__ import CALENDAR_STATE  # noqa: PLC2701
 
 
 def test_filename() -> None:
